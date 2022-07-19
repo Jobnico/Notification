@@ -23,9 +23,19 @@
     <body class="antialiased">
         <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
             @if (Route::has('login'))
-                
-            @endif
+                <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
+                    @auth
+                        <a href="{{ url('/home') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Home</a>
+                    @else
+                        <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Log in</a>
 
+                        @if (Route::has('register'))
+                            <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Register</a>
+                        @endif
+                    @endauth
+                </div>
+            @endif
+                
             <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
                 <div class="flex justify-center pt-8 sm:justify-start sm:pt-0">
                     <svg viewBox="0 0 651 192" fill="none" xmlns="http://www.w3.org/2000/svg" class="h-16 w-auto text-gray-700 sm:h-20">
@@ -36,38 +46,44 @@
                 </div>
                 <form action="{{url('send')}}" method="POST">
 
-                    @csrf
-        
-                    <div>
-                        <label>Greeting</label>
-                        <input type="text" class="form-control" name="greeting">
-                    </div>
-        
-                    <div>
-                        <label>Body</label>
-                        <input type="text" class="form-control" name="body">
-                    </div>
-        
-                    <div>
-                        <label>Action Text</label>
-                        <input type="text" class="form-control" name="acttext">
-                    </div>
-        
-                    <div>
-                        <label>Url</label>
-                        <input type="text" class="form-control" name="url">
-                    </div>
-        
-                    <div>
-                        <label>Last Line</label>
-                        <input type="text" class="form-control" name="lastline">
-                    </div>
-        
-                    <div>
-                        <input type="submit" class="btn btn-success">
-                    </div>
-        
-                </form>
+            @csrf
+
+            <div>
+                <label>Greeting</label>
+                <input type="text" class="form-control" name="greeting">
+            </div>
+
+            <div>
+                <label>Body</label>
+                <input type="text" class="form-control" name="body">
+            </div>
+
+            <div>
+                <label>Action Text</label>
+                <input type="text" class="form-control" name="acttext">
+            </div>
+
+            <div>
+                <label>Url</label>
+                <input type="text" class="form-control" name="url">
+            </div>
+
+            <div>
+                <label>Last Line</label>
+                <input type="text" class="form-control" name="lastline">
+            </div>
+            <!--
+            <div>
+                <label>Genre</label>
+                <input type="text" class="form-control" name="genre">
+            </div>
+        -->
+            
+            <div>
+                <input type="submit" class="btn btn-success">
+            </div>
+
+        </form>
                 
             </div>
         </div>

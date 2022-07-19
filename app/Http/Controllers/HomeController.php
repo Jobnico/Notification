@@ -2,17 +2,22 @@
 
 namespace App\Http\Controllers;
 
+
 use App\Models\User;
-use App\Notifications\SendEmailNotification;
 use Illuminate\Http\Request;
-use Notification;
+use Illuminate\Support\Facades\DB;
+use App\Notifications\SendEmailNotification;
+use Illuminate\Support\Facades\Notification;
+
 
 class HomeController extends Controller
 {
 
     public function sendnotification(Request $request)
     {
-        $user = User::all();
+        $user = User::where('genre', '1')->get();
+        //$user = DB::table('users')->where('genre', '=', 1)->get();
+
 
         $details = [
 
@@ -25,11 +30,13 @@ class HomeController extends Controller
             'actionurl' => $request->url,
 
             'lastline' => $request->lastline,
+
+            /*'genre' => $request->genre,*/
         ];
 
         Notification::send($user, new SendEmailNotification($details));
 
-        dd('done');
+        dd('Sent');
     }
     /**
      * Create a new controller instance.

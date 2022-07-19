@@ -16,8 +16,6 @@ Route::post('send', [HomeController::class , "sendnotification"]);
 
 Auth::routes();
 
-
 Route::get('/home', [HomeController::class , 'index']);
-
 
 Route::get('/home', [App\Http\Controllers\HomeController::class , 'index'])->name('home');

@@ -47,6 +47,7 @@ class SendEmailNotification extends Notification
             ->line($this->details['body'])
             ->action($this->details['actiontext'], $this->details['actionurl'])
             ->line($this->details['lastline']);
+            /*->line($this->details['genre']);*/
     }
 
     /**
